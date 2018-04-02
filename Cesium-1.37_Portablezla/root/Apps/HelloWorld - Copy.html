@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Hello World!</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+      html, body, #cesiumContainer {
+          width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+  </style>
+</head>
+<body>
+  <div id="cesiumContainer"></div>
+  <script>
+    var viewer = new Cesium.Viewer('cesiumContainer');
+	
+	var Poland = viewer.entities.add({
+		name: 'Poland',
+		polygon: {
+			hierarchy: Cesium.Cartesian3.fromDegreesArray([
+			18.338667,54.820366,
+			18.720155,54.386322,
+			22.875648,54.378387,
+			23.938365,52.710955,
+			23.175389,52.254606,
+			23.665873,52.037227,
+			24.060986,50.451036,
+			22.848399,49.042572,
+			19.919117,49.238664,
+			16.730968,50.137695,
+			14.878027,50.900002,
+			14.264922,53.923576]),
+			material: Cesium.Color.WHITE.withAlpha(0.5),
+			outline: true,
+			outlineColor: Cesium.Color.BLACK
+		}
+	});
+
+	var entity = viewer.entities.add({
+			position: Cesium.Cartesian3.fromDegrees(-3.695879, 40.407174),
+			ellipse: {
+			semiMinorAxis: 250000.0,
+			semiMajorAxis: 400000.0,
+			material: Cesium.Color.BLUE.withAlpha(0.5)
+		}
+	});
+
+	var ellipse = entity.ellipse;
+	ellipse.material = 'http://localhost:8080/Apps/espana.png';
+
+	var cube = viewer.entities.add({
+			name: 'Cube',
+			position: Cesium.Cartesian3.fromDegrees(2.3488000, 48.8534100, 100000.0),
+			box: {
+			dimensions: new Cesium.Cartesian3(300000.0, 300000.0, 300000.0)
+		}
+	});
+	cube.box.material= 'http://localhost:8080/Apps/borg-cube.jpg';
+
+	var myPolyline = new Cesium.GeometryInstance({
+	geometry : new Cesium.PolylineGeometry({
+			positions : Cesium.Cartesian3.fromDegreesArrayHeights([
+			13.410530, 52.524370, 0.0,
+			21.011780, 52.229770, 0.0
+			]),
+			vertexFormat : Cesium.PolylineColorAppearance.VERTEX_FORMAT
+		}),
+		attributes : {
+			color : Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.YELLOW)
+		}
+	});
+	viewer.scene.primitives.add(new Cesium.Primitive({
+		geometryInstances : myPolyline,
+		appearance : new Cesium.PolylineColorAppearance()
+	}));
+
+	var layers = viewer.imageryLayers;
+	var blackMarble = layers.addImageryProvider(
+	Cesium.createTileMapServiceImageryProvider({
+		url: 'https://cesiumjs.org/blackmarble',
+		maximumLevel: 8,
+		flipXY : true, //For old gdal2tile.py generated tilesets
+		credit: 'Black Marble imagery courtesy NASA Earth Observatory'
+	}));
+	blackMarble.alpha = 0.5;
+	blackMarble.brightness = 2.0;
+
+	var modelMatrix = Cesium.Transforms.eastNorthUpToFixedFrame(
+	Cesium.Cartesian3.fromDegrees(18.59058, 54.38783, 50.0));
+	var model = viewer.scene.primitives.add( Cesium.Model.fromGltf({
+		url :
+		'http://localhost:8080/Apps/SampleData/models/CesiumGround/Cesium_Ground.gltf',
+		modelMatrix : modelMatrix,
+		scale: 200.0
+	}));
+
+
+
+	var myPolyline2 = new Cesium.GeometryInstance({
+	geometry : new Cesium.PolylineGeometry({
+		positions : Cesium.Cartesian3.fromDegreesArrayHeights([
+		2.3488000, 48.8534100, 100000.0,
+		18.615475, 54.369781,  0.0
+		]),
+		vertexFormat : Cesium.PolylineColorAppearance.VERTEX_FORMAT
+		}),
+	attributes : {
+		color : Cesium.ColorGeometryInstanceAttribute.fromColor(Cesium.Color.GREEN)
+		}
+	});
+	viewer.scene.primitives.add(new Cesium.Primitive({
+		geometryInstances : myPolyline2,
+		appearance : new Cesium.PolylineColorAppearance()
+	}));
+
+
+	var modelMatrix2 = Cesium.Transforms.eastNorthUpToFixedFrame(
+	Cesium.Cartesian3.fromDegrees(18.59058, 54.38783, 50000.0));
+	var model = viewer.scene.primitives.add( Cesium.Model.fromGltf({
+		url :
+		'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+		modelMatrix : modelMatrix2,
+		scale: 2000.0
+	}));
+
+	var terrainProvider = new Cesium.CesiumTerrainProvider({
+		url: '//assets.agi.com/stk-terrain/world',
+		requestWaterMask: true,
+		requestVertexNormals: true
+	});
+	viewer.terrainProvider = terrainProvider;
+	viewer.scene.globe.enableLighting = true;
+
+	var at=0;
+
+	viewer.zoomTo(Poland);
+
+	function myFunction() {
+		console.log(1);
+		at=at+0.1;
+		modelMatrix2 = Cesium.Transforms.eastNorthUpToFixedFrame(
+		Cesium.Cartesian3.fromDegrees(18.59058+at, 54.38783, 50000.0));
+		var model = viewer.scene.primitives.add( Cesium.Model.fromGltf({
+		url :
+		'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+		modelMatrix : modelMatrix2,
+		scale: 2000.0
+	}));
+	modelMatrix2.remove;
+	setTimeout(myFunction, 1000);
+	}
+
+	setTimeout(myFunction, 1000);
+
+  </script>
+</body>
+</html>

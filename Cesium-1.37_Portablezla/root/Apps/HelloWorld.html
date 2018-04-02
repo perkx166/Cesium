@@ -1,0 +1,4739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Use correct character set. -->
+  <meta charset="utf-8">
+  <!-- Tell IE to use the latest, best version. -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- Make the application on mobile take up the full browser screen and disable user scaling. -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+  <title>Hello World!</title>
+  <script src="../Build/Cesium/Cesium.js"></script>
+  <style>
+      @import url(../Build/Cesium/Widgets/widgets.css);
+	  @import url(http://localhost:8080/Apps/Sandcastle/templates/bucket.css);
+      html, body, #cesiumContainer {
+          width: 100%; height: 100%; margin: 0; padding: 0; overflow: hidden;
+      }
+  </style>
+</head>
+<body>
+    <div id="cesiumContainer" class="fullSize"></div>
+    <div id="loadingOverlay">
+        <h1>Loading...</h1>
+    </div>
+    <div id="toolbar">
+		<font size="1" face="Courier New" >
+        <table class="infoPanel1">
+            <tbody>
+                <tr>
+                    <td>WAW-AMS:</td><td>ST_PAS2:</td><td>LA_PAS2:</td><td>P_TOR:</td><td>P_SAM:</td><td>C_SAM:</td>
+                </tr>
+                <tr>
+                    <td><font id="KLM1362">06:05-08:20 KLM1362 EMBRAER 190</font></td>
+					<td><input id="KLM1362t2" type="checkbox" onclick="javascript:KLM1362t2()"></td>
+					<td><input id="KLM1362t1" type="checkbox" onclick="javascript:KLM1362t1()"></td>
+					<td><input id="KLM1362t" type="checkbox" onclick="javascript:KLM1362t()"></td>
+					<td><input id="KLM1362s" type="checkbox" onclick="javascript:KLM1362s()"></td>
+					<td><input  id="KLM1362c" type="checkbox" onclick="javascript:KLM1362c()"></td>
+				</tr>
+                <tr>
+                    <td><font id="LOT265">07:20-09:40 LOT265 BOEING 737</font></td>
+					<td><input id="LOT265t2" type="checkbox" onclick="javascript:LOT265t2()"></td>
+					<td><input id="LOT265t1" type="checkbox" onclick="javascript:LOT265t1()"></td>
+					<td><input id="LOT265t" type="checkbox" onclick="javascript:LOT265t()"></td>
+					<td><input id="LOT265s" type="checkbox" onclick="javascript:LOT265s()"></td>
+					<td><input id="LOT265c" type="checkbox" onclick="javascript:LOT265c()"></td>
+				</tr>
+                <tr>
+                    <td><font id="KLM1364">12:45-14:50 KLM1364 BOEING 737</font></td>
+					<td><input id="KLM1364t2" type="checkbox" onclick="javascript:KLM1364t2()"></td>
+					<td><input id="KLM1364t1" type="checkbox" onclick="javascript:KLM1364t1()"></td>
+					<td><input id="KLM1364t" type="checkbox" onclick="javascript:KLM1364t()"></td>
+					<td><input id="KLM1364s" type="checkbox" onclick="javascript:KLM1364s()"></td>
+					<td><input id="KLM1364c" type="checkbox" onclick="javascript:KLM1364c()"></td>
+				</tr>
+                <tr>
+                    <td><font id="KLM1366">16:45-18:50 KLM1366 EMBRAER 190</font></td>
+					<td><input id="KLM1366t2" type="checkbox" onclick="javascript:KLM1366t2()"></td>
+					<td><input id="KLM1366t1" type="checkbox" onclick="javascript:KLM1366t1()"></td>
+					<td><input id="KLM1366t" type="checkbox" onclick="javascript:KLM1366t()"></td>
+					<td><input id="KLM1366s" type="checkbox" onclick="javascript:KLM1366s()"></td>
+					<td><input id="KLM1366c" type="checkbox" onclick="javascript:KLM136c()"></td>
+				</tr>
+                <tr>
+                    <td><font id="LOT267">16:50-19:00 LOT267 BOEING 737</font></td>
+					<td><input id="LOT267t2" type="checkbox" onclick="javascript:LOT267t2()"></td>
+					<td><input id="LOT267t1" type="checkbox" onclick="javascript:LOT267t1()"></td>
+					<td><input id="LOT267t" type="checkbox" onclick="javascript:LOT267t()"></td>
+					<td><input id="LOT267s" type="checkbox" onclick="javascript:LOT267s()"></td>
+					<td><input id="LOT267c" type="checkbox" onclick="javascript:LOT267c()"></td>
+				</tr>
+                <tr>
+                    <td><font id="LOT269">19:50-22:00 LOT265 BOEING 737</font></td>
+					<td><input id="LOT269t2" type="checkbox" onclick="javascript:LOT269t2()"></td>
+					<td><input id="LOT269t1" type="checkbox" onclick="javascript:LOT269t1()"></td>
+					<td><input id="LOT269t" type="checkbox" onclick="javascript:LOT269t()"></td>
+					<td><input id="LOT269s" type="checkbox" onclick="javascript:LOT269s()"></td>
+					<td><input id="LOT269c" type="checkbox" onclick="javascript:LOT269c()"></td>
+				</tr>
+            </tbody>
+        </table>
+		</font>
+		<font size="1" face="Courier New" >
+		<table class="infoPanel2">
+            <tbody>
+                <tr>
+                    <td>AMS-WAW:</td><td>ST_PAS2:</td><td>LA_PAS2:</td><td>P_TOR:</td><td>P_SAM:</td><td>C_SAM:</td>
+                </tr>
+                <tr>
+                    <td><font id="LOT270">07:05-09:05 LOT270 EMBRAER 195</font></td>
+					<td><input id="LOT270t2" type="checkbox" onclick="javascript:LOT270t2()"></td>
+					<td><input id="LOT270t1" type="checkbox" onclick="javascript:LOT270t1()"></td>
+					<td><input id="LOT270t" type="checkbox" onclick="javascript:LOT270t()"></td>
+					<td><input id="LOT270s" type="checkbox" onclick="javascript:LOT270s()"></td>
+					<td><input id="LOT270c" type="checkbox" onclick="javascript:LOT270c()"></td>
+                </tr>
+                <tr>
+                    <td><font id="KLM1363">10:05-12:00 KLM1363 BOEING 737</font></td>
+					<td><input id="KLM1363t2" type="checkbox" onclick="javascript:KLM1363t2()"></td>
+					<td><input id="KLM1363t1" type="checkbox" onclick="javascript:KLM1363t1()"></td>
+					<td><input id="KLM1363t" type="checkbox" onclick="javascript:KLM1363t()"></td>
+					<td><input id="KLM1363s" type="checkbox" onclick="javascript:KLM1363s()"></td>
+					<td><input id="KLM1363c" type="checkbox" onclick="javascript:KLM1363c()"></td>
+                </tr>
+                <tr>
+                    <td><font id="LOT266">10:25-12:20 LOT266 BOEING 737</font></td>
+					<td><input id="LOT266t2" type="checkbox" onclick="javascript:LOT266t2()"></td>
+					<td><input id="LOT266t1" type="checkbox" onclick="javascript:LOT266t1()"></td>
+					<td><input id="LOT266t" type="checkbox" onclick="javascript:LOT266t()"></td>
+					<td><input id="LOT266s" type="checkbox" onclick="javascript:LOT266s()"></td>
+					<td><input id="LOT266c" type="checkbox" onclick="javascript:LOT266c()"></td>
+                </tr>
+                <tr>
+                    <td><font id="KLM1365">14:25-16:15 KLM1365 EMBRAER 190</font></td>
+					<td><input id="KLM1365t2" type="checkbox" onclick="javascript:KLM1365t2()"></td>
+					<td><input id="KLM1365t1" type="checkbox" onclick="javascript:KLM1365t1()"></td>
+					<td><input id="KLM1365t" type="checkbox" onclick="javascript:KLM1365t()"></td>
+					<td><input id="KLM1365s" type="checkbox" onclick="javascript:KLM1365s()"></td>
+					<td><input id="KLM1365c" type="checkbox" onclick="javascript:KLM1365c()"></td>
+                </tr>
+                <tr>
+                    <td><font id="LOT268">19:50-21:55 LOT268 BOEING 737</font></td>
+					<td><input id="LOT268t2" type="checkbox" onclick="javascript:LOT268t2()"></td>
+					<td><input id="LOT268t1" type="checkbox" onclick="javascript:LOT268t1()"></td>
+					<td><input id="LOT268t" type="checkbox" onclick="javascript:LOT268t()"></td>
+					<td><input id="LOT268s" type="checkbox" onclick="javascript:LOT268s()"></td>
+					<td><input id="LOT268c" type="checkbox" onclick="javascript:LOT268c()"></td>
+                </tr>
+                <tr>
+                    <td><font id="KLM1369">21:20-23:20 KLM1369 EMBRAER 190</font></td>
+					<td><input id="KLM1369t2" type="checkbox" onclick="javascript:KLM1369t2()"></td>
+					<td><input id="KLM1369t1" type="checkbox" onclick="javascript:KLM1369t1()"></td>
+					<td><input id="KLM1369t" type="checkbox" onclick="javascript:KLM1369t()"></td>
+					<td><input id="KLM1369s" type="checkbox" onclick="javascript:KLM1369s()"></td>
+					<td><input id="KLM1369c" type="checkbox" onclick="javascript:KLM1369c()"></td>
+                </tr>
+            </tbody>
+        </table>
+		</font>
+		<font size="1" face="Courier New" >
+		<table class="time">
+            <tbody>
+				USTAW CZAS:
+                <tr>
+                    <td>ROK:</td><td>MIESIAC:</td><td>DZIEN:</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="year" value="2018" style="font-size:10px;"></td>
+					<td><input type="text" name="month" value="1" style="font-size:10px;"></td>
+					<td><input type="text" name="day" value="2" style="font-size:10px;"></td>
+                </tr>
+				 <tr>
+                    <td>GODZINA:</td><td>MINUTA:</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="hour" value="0" style="font-size:10px;"></td>
+					<td><input type="text" name="minute" value="0" style="font-size:10px;"></td>
+                </tr>
+				<tr>
+                    <td>ROK z:</td><td>MIESIAC z:</td><td>DZIEN z:</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="yearz" value="2018" style="font-size:10px;"></td>
+					<td><input type="text" name="monthz" value="1" style="font-size:10px;"></td>
+					<td><input type="text" name="dayz" value="4" style="font-size:10px;"></td>
+                </tr>
+				 <tr>
+                    <td>GODZINA z:</td><td>MINUTA z:</td>
+                </tr>
+                <tr>
+                    <td><input type="text" name="hourz" value="23" style="font-size:10px;"></td>
+					<td><input type="text" name="minutez" value="59" style="font-size:10px;"></td>
+                </tr>
+				<td><button onclick="javascript:set_time()" style="font-size:10px;">OK</button></td>
+            </tbody>
+        </table>
+		</font>
+    </div>
+  <script>
+	
+	var viewer = new Cesium.Viewer('cesiumContainer', {
+		imageryProvider : new Cesium.ArcGisMapServerImageryProvider({
+			url : 'https://server.arcgisonline.com/arcgis/rest/services/ESRI_Imagery_World_2D/MapServer'
+		}),
+		baseLayerPicker : false,
+		infoBox : false,
+		selectionIndicator : false
+	});
+
+	viewer.scene.globe.enableLighting = true;
+	
+	var canvas = viewer.canvas;
+	canvas.setAttribute('tabindex', '0');
+		canvas.addEventListener('click', function() {
+			canvas.focus();
+		});
+	canvas.focus();
+
+	var start = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 6+1,0));
+	var stop = Cesium.JulianDate.addSeconds(start, 86400, new Cesium.JulianDate());
+	
+	viewer.clock.startTime = start.clone();
+	viewer.clock.stopTime = stop.clone();
+	viewer.clock.currentTime = start.clone();
+	viewer.clock.clockRange = Cesium.ClockRange.LOOP_STOP;
+	viewer.clock.multiplier = 1;
+
+	viewer.timeline.zoomTo(start, stop);
+	
+	//FUNCTION TO SET TIME
+	function set_time() {
+	var year=document.getElementsByName('year')[0].value;
+	var month=document.getElementsByName('month')[0].value;
+	var day=document.getElementsByName('day')[0].value;
+	var hour=document.getElementsByName('hour')[0].value;
+	var minute=document.getElementsByName('minute')[0].value;
+	var yearz=document.getElementsByName('yearz')[0].value;
+	var monthz=document.getElementsByName('monthz')[0].value;
+	var dayz=document.getElementsByName('dayz')[0].value;
+	var hourz=document.getElementsByName('hourz')[0].value;
+	var minutez=document.getElementsByName('minutez')[0].value;
+	
+	var time= Cesium.JulianDate.fromDate(new Date(year, month, day, parseInt(hour)+1,minute));
+	var timez= Cesium.JulianDate.fromDate(new Date(yearz, monthz, dayz, parseInt(hourz)+1,minutez));
+	viewer.clock.startTime = time.clone();
+	viewer.clock.stopTime = timez.clone();
+	viewer.timeline.zoomTo(time, timez);
+	}	
+	
+	//CHOPIN
+	//START TRACK 1
+	var s_1_ch_lon = [20.961863, 20.960365, 20.963103, 20.967103, 20.969692, 20.975390, 20.982994, 20.975944, 20.949011, 20.894755];
+	var s_1_ch_lat = [52.176163, 52.173765, 52.170223, 52.165743, 52.162859, 52.156301, 52.146091, 52.139827, 52.141059, 52.163944];
+	var s_1_ch_h = [0, 0, 0, 0, 100, 500, 1500, 2500, 4000, 5000];
+	//START TRACK 2
+	var s_2_ch_lon = [20.961185, 20.955296, 20.946916, 20.946963, 20.970545, 20.991458, 20.995598, 20.991325, 20.967909, 20.894755];
+	var s_2_ch_lat = [52.177062, 52.168712,  52.169422,  52.171371, 52.164766, 52.157681, 52.148719, 52.140096, 52.138007, 52.163944];
+	var s_2_ch_h = [0, 0, 0, 0, 100, 500, 1500, 2500, 4000, 5000];
+	//LANDING TRACK 1
+	var l_1_ch_lon = [20.877134, 20.897551, 20.933400, 20.953575, 20.972560, 20.987305, 20.981351, 20.972825, 20.962159, 20.961863];
+	var l_1_ch_lat = [52.151655, 52.145589, 52.135472, 52.133452, 52.133167, 52.138263, 52.149578, 52.159248, 52.171330, 52.176163];
+	var l_1_ch_h = [5000,4000,2500,1500,500,400,200,0,0,0];
+	//LANDING TRACK 2
+	var l_2_ch_lon = [20.898712, 20.945471, 20.985951, 21.006883, 21.004443, 20.983671, 20.972785, 20.959141, 20.956245, 20.961863];
+	var l_2_ch_lat = [52.154416, 52.128411, 52.135236, 52.149126, 52.155199, 52.161201, 52.164276, 52.167962, 52.169763, 52.176163];
+	var l_2_ch_h = [5000,4000,2500,1500,500,100,0,0,0,0];
+	
+	//AMSTERDAM
+	//START TRACK 1
+	var s_1_ams_lon = [4.771969, 4.766883, 4.751479, 4.746543, 4.749191, 4.757304, 4.771844, 4.780001, 4.786021, 4.863519];
+	var s_1_ams_lat = [52.315304, 52.315544, 52.315064, 52.315194, 52.316749, 52.317079, 52.317554, 52.317880, 52.318008, 52.318865];
+	var s_1_ams_h = [0, 0, 0, 0, 100, 500, 1500, 2500, 4000, 5000];
+	//START TRACK 2
+	var s_2_ams_lon = [4.771899, 4.773464, 4.776465, 4.777257, 4.778761, 4.780093, 4.777913, 4.779579, 4.816783, 4.914990];
+	var s_2_ams_lat = [52.315147, 52.316035, 52.317177, 52.320005, 52.321147, 52.321055, 52.298361, 52.279663, 52.274802, 52.281464];
+	var s_2_ams_h = [0, 0, 0, 0, 100, 500, 1500, 2500, 4000, 5000];	
+	//LANDING TRACK 1
+	var l_1_ams_lon = [4.871150, 4.817287, 4.788503, 4.779747, 4.770621, 4.749193, 4.748398, 4.755989, 4.759397, 4.771899];
+	var l_1_ams_lat = [52.323449, 52.319423, 52.318123, 52.317918, 52.317514, 52.316794, 52.314959, 52.315098, 52.314444, 52.314847];
+	var l_1_ams_h = [5000,3000,1500,300,0,0,0,0,0,0];
+	//LANDING TRACK 2
+	var l_2_ams_lon = [4.887741, 4.834661, 4.789401, 4.776688, 4.778589, 4.779786, 4.779722, 4.777331, 4.776827, 4.771899];
+	var l_2_ams_lat = [52.299872, 52.315731, 52.273687, 52.282290, 52.304881, 52.316629, 52.321125, 52.320108, 52.317466, 52.314847];
+	var l_2_ams_h = [5000,4000,2500,1500,500,400,200,0,0,0];
+	
+	//KLM1362 06:05-08:20 CHOPIN-AMSTERDAM
+	var s_KLM1362 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 6+1,5));
+	var s_KLM1362_lon = [20.967127, 20.965800, 20.963837];
+	var s_KLM1362_lat = [52.171628, 52.172283, 52.174261];
+	var l_KLM1362 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 8+1,20));
+	var l_KLM1362_lon = [4.771641, 4.770352, 4.746988];
+	var l_KLM1362_lat = [52.314266, 52.31401, 52.310382];
+	
+	//LOT265 07:20-09:40 CHOPIN-AMSTERDAM
+	var s_LOT265 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 7+1,20));
+	var s_LOT265_lon = [20.966720, 20.965341, 20.963837];
+	var s_LOT265_lat = [52.172071, 52.172618, 52.174261];
+	var l_LOT265 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 9+1,40));
+	var l_LOT265_lon = [4.771491, 4.769838, 4.746988];
+	var l_LOT265_lat = [52.313445, 52.313401, 52.310382];
+	
+	//KLM1364 12:45-14:50 CHOPIN-AMSTERDAM
+	var s_KLM1364 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 12+1,45));
+	var s_KLM1364_lon = [20.966447, 20.965341, 20.963837];
+	var s_KLM1364_lat = [52.172396, 52.172618, 52.174261];
+	var l_KLM1364 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 14+1,50));
+	var l_KLM1364_lon = [4.771899,4.770846,4.769215,4.746988];
+	var l_KLM1364_lat = [52.314847,52.312794,52.312803,52.310382];
+	
+	//KLM1366 16:45-18:50 CHOPIN-AMSTERDAM
+	var s_KLM1366 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 16+1,45));
+	var s_KLM1366_lon = [20.966034, 20.965025, 20.963837];
+	var s_KLM1366_lat = [52.172813, 52.173046, 52.174261];
+	var l_KLM1366 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 18+1,50));
+	var l_KLM1366_lon = [4.771899,4.770406,4.768665,4.746988];
+	var l_KLM1366_lat = [52.314847,52.312303,52.312151,52.310382];
+	
+	//LOT267 16:50-19:00 CHOPIN-AMSTERDAM
+	var s_LOT267 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 16+1,50));
+	var s_LOT267_lon = [20.965796, 20.964707, 20.963837];
+	var s_LOT267_lat = [52.173141, 52.173274, 52.174261];
+	var l_LOT267 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 19+1,0));
+	var l_LOT267_lon = [4.769761, 4.767947, 4.746988];
+	var l_LOT267_lat = [52.311849, 52.31162, 52.310382];
+	
+	//LOT269 19:50-22:00 CHOPIN-AMSTERDAM
+	var s_LOT269 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 19+1,50));
+	var s_LOT269_lon = [20.965580, 20.964734, 20.963837];
+	var s_LOT269_lat = [52.173443, 52.173372, 52.174261];
+	var l_LOT269 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 22+1,0));
+	var l_LOT269_lon = [4.769593, 4.767156, 4.746988];
+	var l_LOT269_lat = [52.311306, 52.31118, 52.310382];
+	
+	//LOT270 07:05-09:05 AMSTERDAM-CHOPIN
+	var s_LOT270 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 7+1,5));
+	var s_LOT270_lon = [4.744063,4.742813,4.743159,4.771899];
+	var s_LOT270_lat = [52.309864,52.310533,52.313758,52.314847];
+	var l_LOT270 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 9+1,5));
+	var l_LOT270_lon = [20.963540, 20.966908, 20.968351];
+	var l_LOT270_lat = [52.174261, 52.170347, 52.170282];
+	
+	//KLM1363 10:05-12:00 AMSTERDAM-CHOPIN
+	var s_KLM1363 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 10+1,5));
+	var s_KLM1363_lon = [4.744116,4.742955,4.742768,4.771899];
+	var s_KLM1363_lat = [52.310616,52.311262,52.313116,52.314847];
+	var l_KLM1363 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 12+1,0));
+	var l_KLM1363_lon = [20.963540, 20.966908, 20.968541];
+	var l_KLM1363_lat = [52.174261, 52.170347, 52.169989];
+	
+	//LOT266 10:25-12:20 AMSTERDAM-CHOPIN
+	var s_LOT266 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 10+1,25));
+	var s_LOT266_lon = [4.74429,4.743032,4.742971,4.771899];
+	var s_LOT266_lat = [52.311319,52.311816,52.313462,52.314847];
+	var l_LOT266 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 12+1,20));
+	var l_LOT266_lon = [20.963540, 20.966908, 20.968823];
+	var l_LOT266_lat = [52.174261, 52.170347, 52.169714];
+
+	//KLM1365 14:25-16:15 AMSTERDAM-CHOPIN
+	var s_KLM1365 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 14+1,25));
+	var s_KLM1365_lon = [4.744326,4.743176,4.743031,4.771899];
+	var s_KLM1365_lat = [52.311918,52.312079,52.313515,52.314847];
+	var l_KLM1365 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 16+1,15));
+	var l_KLM1365_lon = [20.963540, 20.966908, 20.969114];
+	var l_KLM1365_lat = [52.174261, 52.170347, 52.169323];
+
+	//LOT268 19:50-21:55 AMSTERDAM-CHOPIN
+	var s_LOT268 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 19+1,50));
+	var s_LOT268_lon = [4.746943,4.745581,4.745949,4.771899];
+	var s_LOT268_lat = [52.309755,52.31069,52.313711,52.314847];
+	var l_LOT268 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 21+1,55));
+	var l_LOT268_lon = [20.963540, 20.967637, 20.969398];
+	var l_LOT268_lat = [52.174261, 52.169730, 52.169117];	
+	
+	//KLM1369 21:20-23:20 AMSTERDAM-CHOPIN
+	var s_KLM1369 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 21+1,20));
+	var s_KLM1369_lon = [4.746988,4.745638,4.745925,4.771899];
+	var s_KLM1369_lat = [52.310382,52.311252,52.313555,52.314847];
+	var l_KLM1369 = Cesium.JulianDate.fromDate(new Date(2018, 1, 3, 23+1,20));
+	var l_KLM1369_lon = [20.963540, 20.967637, 20.969627];
+	var l_KLM1369_lat = [52.174261, 52.169730, 52.168784];
+	
+	//VARIABLES
+	var num_c=0;
+	
+	var KLM1362_pas_s=1;
+	var KLM1362_pas_l=1;
+	var KLM1362tp=1;
+	
+	var LOT265_pas_s=1;
+	var LOT265_pas_l=1;
+	var LOT265tp=1;
+	
+	var KLM1364_pas_s=1;
+	var KLM1364_pas_l=1;
+	var KLM1364tp=1;
+	
+	var KLM1366_pas_s=1;
+	var KLM1366_pas_l=1;
+	var KLM1366tp=1;
+	
+	var LOT267_pas_s=1;
+	var LOT267_pas_l=1;
+	var LOT267tp=1;
+	
+	var LOT269_pas_s=1;
+	var LOT269_pas_l=1;
+	var LOT269tp=1;
+	
+	var LOT270_pas_s=1;
+	var LOT270_pas_l=1;
+	var LOT270tp=1;
+	
+	var KLM1363_pas_s=1;
+	var KLM1363_pas_l=1;
+	var KLM1363tp=1;
+	
+	var LOT266_pas_s=1;
+	var LOT266_pas_l=1;
+	var LOT266tp=1;
+	
+	var KLM1365_pas_s=1;
+	var KLM1365_pas_l=1;
+	var KLM1365tp=1;
+	
+	var LOT268_pas_s=1;
+	var LOT268_pas_l=1;
+	var LOT268tp=1;
+	
+	var KLM1369_pas_s=1;
+	var KLM1369_pas_l=1;
+	var KLM1369tp=1;
+	
+	
+	//TIME EVENT	
+	viewer.clock.onTick.addEventListener(function(clock) {
+        	var act_time=viewer.clock.currentTime;
+			//if na czas 2s przed do zmiany pozycji
+			if(num_c==0){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362)){
+				if(KLM1362s_flag==true){
+					if(KLM1362c_flag==true){
+						viewer.trackedEntity = undefined;
+						viewer.trackedEntity=KLM1362;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1362c_flag=false;
+				document.getElementById("KLM1362c").checked = false;
+			}}		
+
+			if(num_c==1){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265)){
+				if(LOT265s_flag==true){
+					if(LOT265c_flag==true){
+						viewer.trackedEntity = undefined;
+						viewer.trackedEntity=LOT265;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT265c_flag=false;
+				document.getElementById("LOT265c").checked = false;
+			}}
+		
+			if(num_c==2){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364)){
+				if(KLM1364s_flag==true){
+					if(KLM1364c_flag==true){
+						viewer.trackedEntity = undefined;
+						viewer.trackedEntity=KLM1364;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1364c_flag=false;
+				document.getElementById("KLM1364c").checked = false;
+			}}
+			
+			if(num_c==3){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366)){
+				if(KLM1366s_flag==true){
+					if(KLM1366c_flag==true){
+						viewer.trackedEntity=KLM1366;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1366c_flag=false;
+				document.getElementById("KLM1366c").checked = false;
+			}}
+			
+			if(num_c==4){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267)){
+				if(LOT267s_flag==true){
+					if(LOT267c_flag==true){
+						viewer.trackedEntity=LOT267;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT267c_flag=false;
+				document.getElementById("LOT267c").checked = false;
+			}}
+			
+			if(num_c==5){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269)){
+				if(LOT269s_flag==true){
+					if(LOT269c_flag==true){
+						viewer.trackedEntity=LOT269;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT269c_flag=false;
+				document.getElementById("LOT269c").checked = false;
+			}}
+			
+			if(num_c==6){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270)){
+				if(LOT270s_flag==true){
+					if(LOT270c_flag==true){
+						viewer.trackedEntity=LOT270;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT270c_flag=false;
+				document.getElementById("LOT270c").checked = false;
+			}}
+			
+			if(num_c==7){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363)){
+				if(KLM1363s_flag==true){
+					if(KLM1363c_flag==true){
+						viewer.trackedEntity=KLM1363;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1363c_flag=false;
+				document.getElementById("KLM1363c").checked = false;
+			}}
+			
+			if(num_c==8){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266)){
+				if(LOT266s_flag==true){
+					if(LOT266c_flag==true){
+						viewer.trackedEntity=LOT266;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT266c_flag=false;
+				document.getElementById("LOT266c").checked = false;
+			}}
+			
+			if(num_c==9){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365)){
+				if(KLM1365s_flag==true){
+					if(KLM1365c_flag==true){
+						viewer.trackedEntity=KLM1365;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1365c_flag=false;
+				document.getElementById("KLM1365c").checked = false;
+			}}
+			
+			if(num_c==10){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268)){
+				if(LOT268s_flag==true){
+					if(LOT268c_flag==true){
+						viewer.trackedEntity=LOT268;
+					}else{
+						viewer.trackedEntity = undefined;
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				LOT268c_flag=false;
+				document.getElementById("LOT268c").checked = false;
+			}}
+			
+			if(num_c==11){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369)){
+				if(KLM1369s_flag==true){
+					if(KLM1369c_flag==true){
+						viewer.trackedEntity=KLM1369;
+					}else{
+						viewer.trackedEntity = undefined;
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+					}
+				}
+			}else{
+				viewer.trackedEntity = undefined;
+				KLM1369c_flag=false;
+				document.getElementById("KLM1369c").checked = false;
+			}}
+			
+			//KOLORY
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362)){
+				document.getElementById("KLM1362").style.color = "green";
+				if(KLM1362s_flag==true){
+					KLM1362.show=true;
+				}else{
+				KLM1362.show=false;}
+			}else{
+				if(KLM1362s_flag==true){
+					KLM1362.show=true;
+				}else{
+				KLM1362.show=false;}
+				document.getElementById("KLM1362").style.color = "red";
+			}	
+
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265)){
+				document.getElementById("LOT265").style.color = "green";
+				if(LOT265s_flag==true){
+					LOT265.show=true;
+				}else{
+				LOT265.show=false;}
+			}else{
+				if(LOT265s_flag==true){
+					LOT265.show=true;
+				}else{
+				LOT265.show=false;}
+				document.getElementById("LOT265").style.color = "red";
+			}
+		
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364)){
+				document.getElementById("KLM1364").style.color = "green";
+				if(KLM1364s_flag==true){
+					KLM1364.show=true;
+				}else{
+				KLM1364.show=false;}
+			}else{
+				if(KLM1364s_flag==true){
+					KLM1364.show=true;
+				}else{
+				KLM1364.show=false;}
+				document.getElementById("KLM1364").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366)){
+				document.getElementById("KLM1366").style.color = "green";
+				if(KLM1366s_flag==true){
+					KLM1366.show=true;
+				}else{
+				KLM1366.show=false;}
+			}else{
+				if(KLM1366s_flag==true){
+					KLM1366.show=true;
+				}else{
+				KLM1366.show=false;}
+				document.getElementById("KLM1366").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267)){
+				document.getElementById("LOT267").style.color = "green";
+				if(LOT267s_flag==true){
+					LOT267.show=true;
+				}else{
+				LOT267.show=false;}
+			}else{
+				if(LOT267s_flag==true){
+					LOT267.show=true;
+				}else{
+				LOT267.show=false;}
+				document.getElementById("LOT267").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269)){
+				document.getElementById("LOT269").style.color = "green";
+				if(LOT269s_flag==true){
+					LOT269.show=true;
+				}else{
+				LOT269.show=false;}
+			}else{
+				if(LOT269s_flag==true){
+					LOT269.show=true;
+				}else{
+				LOT269.show=false;}
+				document.getElementById("LOT269").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270)){
+				document.getElementById("LOT270").style.color = "green";
+				if(LOT270s_flag==true){
+					LOT270.show=true;
+				}else{
+				LOT270.show=false;}
+			}else{
+				if(LOT270s_flag==true){
+					LOT270.show=true;
+				}else{
+				LOT270.show=false;}
+				document.getElementById("LOT270").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363)){
+				document.getElementById("KLM1363").style.color = "green";
+				if(KLM1363s_flag==true){
+					KLM1363.show=true;
+				}else{
+				KLM1363.show=false;}
+			}else{
+				if(KLM1363s_flag==true){
+					KLM1363.show=true;
+				}else{
+				KLM1363.show=false;}
+				document.getElementById("KLM1363").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266)){
+				document.getElementById("LOT266").style.color = "green";
+				if(LOT266s_flag==true){
+					LOT266.show=true;
+				}else{
+				LOT266.show=false;}
+			}else{
+				if(LOT266s_flag==true){
+					LOT266.show=true;
+				}else{
+				LOT266.show=false;}
+				document.getElementById("LOT266").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365)){
+				document.getElementById("KLM1365").style.color = "green";
+				if(KLM1365s_flag==true){
+					KLM1365.show=true;
+				}else{
+				KLM1365.show=false;}
+			}else{
+				if(KLM1365s_flag==true){
+					KLM1365.show=true;
+				}else{
+				KLM1365.show=false;}
+				document.getElementById("KLM1365").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268)){
+				document.getElementById("LOT268").style.color = "green";
+				if(LOT268s_flag==true){
+					LOT268.show=true;
+				}else{
+				LOT268.show=false;}
+			}else{
+				if(LOT268s_flag==true){
+					LOT268.show=true;
+				}else{
+				LOT268.show=false;}
+				document.getElementById("LOT268").style.color = "red";
+			}
+			
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369)){
+				document.getElementById("KLM1369").style.color = "green";
+				if(KLM1369s_flag==true){
+					KLM1369.show=true;
+				}else{
+				KLM1369.show=false;}
+			}else{
+				if(KLM1369s_flag==true){
+					KLM1369.show=true;
+				}else{
+				KLM1369.show=false;}
+				document.getElementById("KLM1369").style.color = "red";
+			}
+
+    });
+	
+	//PLANE 1	
+	function compute_KLM1362() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1362;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1362,s_KLM1362)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1362_pas_s==1){
+						if(KLM1362_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1362_lon[i],s_KLM1362_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1362_lon[i-23],l_KLM1362_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1362_lon[i],s_KLM1362_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1362_lon[i-23],l_KLM1362_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1362_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1362_lon[i],s_KLM1362_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1362_lon[i-23],l_KLM1362_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1362_lon[i],s_KLM1362_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1362_lon[i-23],l_KLM1362_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1362, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1362p = compute_KLM1362();
+	var KLM1362 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1362,
+			stop : l_KLM1362
+		})]),
+		position : KLM1362p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1362p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1362.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1362.path.show=false;
+	
+	function showed_toryKLM1362(){
+		var act_time=viewer.clock.currentTime;
+		if(KLM1362tp==2){
+				KLM1362.path.show=true;
+			}else{
+				KLM1362.path.show=false;
+			}
+
+	}
+	
+	function KLM1362t() {
+		if(KLM1362tp==1){
+			KLM1362tp=2;
+			KLM1362.path.show=true;
+		}else{
+			KLM1362tp=1;
+			KLM1362.path.show=false;
+		}
+	}
+	
+	function KLM1362t2() {
+		var act_time=viewer.clock.currentTime;
+		KLM1362.path.show=false;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362))){
+		if(KLM1362_pas_s==1){
+			KLM1362_pas_s=2;			
+			showed_toryKLM1362();
+			KLM1362p = compute_KLM1362();
+			KLM1362 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1362,
+					stop : l_KLM1362
+				})]),
+				position : KLM1362p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1362p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1362.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1362_pas_s=1;
+			showed_toryKLM1362();
+			KLM1362p = compute_KLM1362();
+			KLM1362 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1362,
+					stop : l_KLM1362
+				})]),
+				position : KLM1362p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1362p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1362.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1362t2").checked = !document.getElementById("KLM1362t2").checked;
+		}
+	}
+	
+	function KLM1362t1() {
+		var act_time=viewer.clock.currentTime;
+		KLM1362.path.show=false;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362))){
+		if(KLM1362_pas_l==1){
+			KLM1362_pas_l=2;
+			showed_toryKLM1362();
+			KLM1362p = compute_KLM1362();
+			KLM1362 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1362,
+					stop : l_KLM1362
+				})]),
+				position : KLM1362p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1362p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1362.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1362_pas_l=1;
+			showed_toryKLM1362();
+			KLM1362p = compute_KLM1362();
+			KLM1362 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1362,
+					stop : l_KLM1362
+				})]),
+				position : KLM1362p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1362p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1362.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1362t1").checked = !document.getElementById("KLM1362t1").checked;
+		}
+	}
+	
+	KLM1362.show=false;
+	
+	var KLM1362s_flag=false;
+	var KLM1362c_flag=false;
+	
+	function KLM1362s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1362s_flag==false){
+		KLM1362s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362)){
+			KLM1362.show=true;
+		}}else{
+			KLM1362s_flag=false;
+			KLM1362.show=false;
+		}
+	}
+	
+	function KLM1362c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1362s_flag==true){
+		if(KLM1362c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1362)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1362)){		
+						num_c=0;
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity = undefined;
+				viewer.trackedEntity= KLM1362;
+				KLM1362c_flag=true;
+				console.log("aa");
+		}}else{
+			KLM1362c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1362c").checked = false;
+		}}else{
+			KLM1362c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1362c").checked = false;
+		}
+	}
+	
+	//PLANE 2
+	function compute_LOT265() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT265;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT265,s_LOT265)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT265_pas_s==1){
+						if(LOT265_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT265_lon[i],s_LOT265_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT265_lon[i-23],l_LOT265_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT265_lon[i],s_LOT265_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT265_lon[i-23],l_LOT265_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT265_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT265_lon[i],s_LOT265_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT265_lon[i-23],l_LOT265_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT265_lon[i],s_LOT265_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT265_lon[i-23],l_LOT265_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT265, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT265p = compute_LOT265();
+	var LOT265 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT265,
+			stop : l_LOT265
+		})]),
+		position : LOT265p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT265p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT265.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT265.path.show=false;
+	
+	function showed_toryLOT265(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT265tp==2){
+				LOT265.path.show=true;
+			}else{
+				LOT265.path.show=false;
+			}
+	}
+	
+	function LOT265t() {
+		if(LOT265tp==1){
+			LOT265tp=2;
+			LOT265.path.show=true;
+		}else{
+			LOT265tp=1;
+			LOT265.path.show=false;
+		}
+	}
+	
+	function LOT265t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265))){
+		if(LOT265_pas_s==1){
+			LOT265_pas_s=2;
+			showed_toryLOT265();
+			LOT265p = compute_LOT265();
+			LOT265 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT265,
+					stop : l_LOT265
+				})]),
+				position : LOT265p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT265p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT265.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT265_pas_s=1;
+			showed_toryLOT265();
+			LOT265p = compute_LOT265();
+			LOT265 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT265,
+					stop : l_LOT265
+				})]),
+				position : LOT265p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT265p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT265.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT265t2").checked = !document.getElementById("LOT265t2").checked;
+		}
+	}
+	
+	function LOT265t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265))){
+		if(LOT265_pas_l==1){
+			LOT265_pas_l=2;
+			showed_toryLOT265();
+			LOT265p = compute_LOT265();
+			LOT265 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT265,
+					stop : l_LOT265
+				})]),
+				position : LOT265p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT265p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT265.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT265_pas_l=1;
+			showed_toryLOT265();
+			LOT265p = compute_LOT265();
+			LOT265 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT265,
+					stop : l_LOT265
+				})]),
+				position : LOT265p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT265p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT265.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT265t1").checked = !document.getElementById("LOT265t1").checked;
+		}
+	}
+	
+	LOT265.show=false;
+	
+	var LOT265s_flag=false;
+	var LOT265c_flag=false;
+	
+	function LOT265s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT265s_flag==false){
+		LOT265s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265)){
+			LOT265.show=true;
+		}}else{
+			LOT265s_flag=false;
+			LOT265.show=false;
+		}
+	}
+	
+	function LOT265c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT265s_flag==true){
+		if(LOT265c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT265)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT265)){
+						num_c=1;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity = undefined;
+				viewer.trackedEntity= LOT265;
+				LOT265c_flag=true;
+		}}else{
+			LOT265c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT265c").checked = false;
+		}}else{
+			LOT265c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT265c").checked = false;
+		}
+	}
+	
+	//PLANE 3
+	function compute_KLM1364() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1364;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1364,s_KLM1364)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1364_pas_s==1){
+						if(KLM1364_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1364_lon[i],s_KLM1364_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1364_lon[i-23],l_KLM1364_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1364_lon[i],s_KLM1364_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1364_lon[i-23],l_KLM1364_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1364_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1364_lon[i],s_KLM1364_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1364_lon[i-23],l_KLM1364_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1364_lon[i],s_KLM1364_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1364_lon[i-23],l_KLM1364_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1364, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1364p = compute_KLM1364();
+	var KLM1364 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1364,
+			stop : l_KLM1364
+		})]),
+		position : KLM1364p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1364p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1364.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1364.path.show=false;
+	
+	function showed_toryKLM1364(){
+		var act_time=viewer.clock.currentTime;
+		if(KLM1364tp==2){
+				KLM1364.path.show=true;
+			}else{
+				KLM1364.path.show=false;
+			}
+		
+	}
+	
+	function KLM1364t() {
+		if(KLM1364tp==1){
+			KLM1364tp=2;
+			KLM1364.path.show=true;
+		}else{
+			KLM1364tp=1;
+			KLM1364.path.show=false;
+		}
+	}
+	
+	function KLM1364t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364))){
+		if(KLM1364_pas_s==1){
+			KLM1364_pas_s=2;
+			showed_toryKLM1364();
+			KLM1364p = compute_KLM1364();
+			KLM1364 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1364,
+					stop : l_KLM1364
+				})]),
+				position : KLM1364p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1364p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1364.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1364_pas_s=1;
+			showed_toryKLM1364();
+			KLM1364p = compute_KLM1364();
+			KLM1364 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1364,
+					stop : l_KLM1364
+				})]),
+				position : KLM1364p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1364p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1364.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1364t2").checked = !document.getElementById("KLM1364t2").checked;
+		}
+	}
+	
+	function KLM1364t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364))){
+		if(KLM1364_pas_l==1){
+			KLM1364_pas_l=2;
+			showed_toryKLM1364();
+			KLM1364p = compute_KLM1364();
+			KLM1364 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1364,
+					stop : l_KLM1364
+				})]),
+				position : KLM1364p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1364p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1364.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1364_pas_l=1;
+			showed_toryKLM1364();
+			KLM1364p = compute_KLM1364();
+			KLM1364 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1364,
+					stop : l_KLM1364
+				})]),
+				position : KLM1364p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1364p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1364.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1364t1").checked = !document.getElementById("KLM1364t1").checked;
+		}
+	}
+	
+	KLM1364.show=false;
+	
+	var KLM1364s_flag=false;
+	var KLM1364c_flag=false;
+	
+	function KLM1364s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1364s_flag==false){
+		KLM1364s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364)){
+			KLM1364.show=true;
+		}}else{
+			KLM1364s_flag=false;
+			KLM1364.show=false;
+		}
+	}
+	
+	function KLM1364c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1364s_flag==true){
+		if(KLM1364c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1364)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1364)){
+						num_c=2;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity = undefined;
+				viewer.trackedEntity= KLM1364;
+				KLM1364c_flag=true;
+		}}else{
+			KLM1364c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1364c").checked = false;
+		}}else{
+			KLM1364c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1364c").checked = false;
+		}
+	}
+	
+	//PLANE 4
+	function compute_KLM1366() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1366;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1366,s_KLM1366)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1366_pas_s==1){
+						if(KLM1366_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1366_lon[i],s_KLM1366_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1366_lon[i-23],l_KLM1366_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1366_lon[i],s_KLM1366_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1366_lon[i-23],l_KLM1366_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1366_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1366_lon[i],s_KLM1366_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1366_lon[i-23],l_KLM1366_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1366_lon[i],s_KLM1366_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1366_lon[i-23],l_KLM1366_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1366, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1366p = compute_KLM1366();
+	var KLM1366 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1366,
+			stop : l_KLM1366
+		})]),
+		position : KLM1366p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1366p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1366.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1366.path.show=false;
+	
+	function showed_toryKLM1366(){
+		var act_time=viewer.clock.currentTime;
+		if(KLM1366tp==2){
+				KLM1366.path.show=true;
+			}else{
+				KLM1366.path.show=false;
+			}
+		
+	}
+	
+	function KLM1366t() {
+		if(KLM1366tp==1){
+			KLM1366tp=2;
+			KLM1366.path.show=true;
+		}else{
+			KLM1366tp=1;
+			KLM1366.path.show=false;
+		}
+	}
+	
+	function KLM1366t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366))){
+		if(KLM1366_pas_s==1){
+			KLM1366_pas_s=2;
+			showed_toryKLM1366();
+			KLM1366p = compute_KLM1366();
+			KLM1366 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1366,
+					stop : l_KLM1366
+				})]),
+				position : KLM1366p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1366p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1366.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1366_pas_s=1;
+			showed_toryKLM1366();
+			KLM1366p = compute_KLM1366();
+			KLM1366 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1366,
+					stop : l_KLM1366
+				})]),
+				position : KLM1366p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1366p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1366.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1366t2").checked = !document.getElementById("KLM1366t2").checked;
+		}
+	}
+	
+	function KLM1366t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366))){
+		if(KLM1366_pas_l==1){
+			KLM1366_pas_l=2;
+			showed_toryKLM1366();
+			KLM1366p = compute_KLM1366();
+			KLM1366 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1366,
+					stop : l_KLM1366
+				})]),
+				position : KLM1366p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1366p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1366.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1366_pas_l=1;
+			showed_toryKLM1366();
+			KLM1366p = compute_KLM1366();
+			KLM1366 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1366,
+					stop : l_KLM1366
+				})]),
+				position : KLM1366p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1366p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1366.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1366t1").checked = !document.getElementById("KLM1366t1").checked;
+		}
+	}
+	
+	KLM1366.show=false;
+	
+	var KLM1366s_flag=false;
+	var KLM1366c_flag=false;
+	
+	function KLM1366s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1366s_flag==false){
+		KLM1366s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366)){
+			KLM1366.show=true;
+		}}else{
+			KLM1366s_flag=false;
+			KLM1366.show=false;
+		}
+	}
+	
+	function KLM1366c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1366s_flag==true){
+		if(KLM1366c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1366)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1366)){
+						num_c=3;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= KLM1366;
+				KLM1366c_flag=true;
+		}}else{
+			KLM1366c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1366c").checked = false;
+		}}else{
+			KLM1366c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1366c").checked = false;
+		}
+	}
+	
+	//PLANE 5
+	function compute_LOT267() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT267;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT267,s_LOT267)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT267_pas_s==1){
+						if(LOT267_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT267_lon[i],s_LOT267_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT267_lon[i-23],l_LOT267_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT267_lon[i],s_LOT267_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT267_lon[i-23],l_LOT267_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT267_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT267_lon[i],s_LOT267_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT267_lon[i-23],l_LOT267_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT267_lon[i],s_LOT267_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT267_lon[i-23],l_LOT267_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT267, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT267p = compute_LOT267();
+	var LOT267 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT267,
+			stop : l_LOT267
+		})]),
+		position : LOT267p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT267p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT267.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT267.path.show=false;
+	
+	function showed_toryLOT267(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT267tp==2){
+				LOT267.path.show=true;
+			}else{
+				LOT267.path.show=false;
+			}
+		
+	}
+	
+	function LOT267t() {
+		if(LOT267tp==1){
+			LOT267tp=2;
+			LOT267.path.show=true;
+		}else{
+			LOT267tp=1;
+			LOT267.path.show=false;
+		}
+	}
+	
+	function LOT267t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267))){
+		if(LOT267_pas_s==1){
+			LOT267_pas_s=2;
+			showed_toryLOT267();
+			LOT267p = compute_LOT267();
+			LOT267 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT267,
+					stop : l_LOT267
+				})]),
+				position : LOT267p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT267p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT267.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT267_pas_s=1;
+			showed_toryLOT267();
+			LOT267p = compute_LOT267();
+			LOT267 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT267,
+					stop : l_LOT267
+				})]),
+				position : LOT267p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT267p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT267.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT267t2").checked = !document.getElementById("LOT267t2").checked;
+		}
+	}
+	
+	function LOT267t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267))){
+		if(LOT267_pas_l==1){
+			LOT267_pas_l=2;
+			showed_toryLOT267();
+			LOT267p = compute_LOT267();
+			LOT267 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT267,
+					stop : l_LOT267
+				})]),
+				position : LOT267p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT267p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT267.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT267_pas_l=1;
+			showed_toryLOT267();
+			LOT267p = compute_LOT267();
+			LOT267 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT267,
+					stop : l_LOT267
+				})]),
+				position : LOT267p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT267p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT267.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT267t1").checked = !document.getElementById("LOT267t1").checked;
+		}
+	}
+	
+	LOT267.show=false;
+	
+	var LOT267s_flag=false;
+	var LOT267c_flag=false;
+	
+	function LOT267s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT267s_flag==false){
+		LOT267s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267)){
+			LOT267.show=true;
+		}}else{
+			LOT267s_flag=false;
+			LOT267.show=false;
+		}
+	}
+	
+	function LOT267c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT267s_flag==true){
+		if(LOT267c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT267)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT267)){
+						num_c=4;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= LOT267;
+				LOT267c_flag=true;
+		}}else{
+			LOT267c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT267c").checked = false;
+		}}else{
+			LOT267c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT267c").checked = false;
+		}
+	}
+	
+	//PLANE 6
+	function compute_LOT269() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT269;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT269,s_LOT269)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT269_pas_s==1){
+						if(LOT269_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT269_lon[i],s_LOT269_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT269_lon[i-23],l_LOT269_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT269_lon[i],s_LOT269_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ch_lon[i-3],s_1_ch_lat[i-3],s_1_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT269_lon[i-23],l_LOT269_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT269_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT269_lon[i],s_LOT269_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ams_lon[i-13],l_1_ams_lat[i-13],l_1_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT269_lon[i-23],l_LOT269_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT269_lon[i],s_LOT269_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ch_lon[i-3],s_2_ch_lat[i-3],s_2_ch_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ams_lon[i-13],l_2_ams_lat[i-13],l_2_ams_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT269_lon[i-23],l_LOT269_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT269, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT269p = compute_LOT269();
+	var LOT269 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT269,
+			stop : l_LOT269
+		})]),
+		position : LOT269p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT269p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT269.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT269.path.show=false;
+	
+	function showed_toryLOT269(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT269tp==2){
+				LOT269.path.show=true;
+			}else{
+				LOT269.path.show=false;
+			}
+		
+	}
+	
+	function LOT269t() {
+		if(LOT269tp==1){
+			LOT269tp=2;
+			LOT269.path.show=true;
+		}else{
+			LOT269tp=1;
+			LOT269.path.show=false;
+		}
+	}
+	
+	function LOT269t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269))){
+		if(LOT269_pas_s==1){
+			LOT269_pas_s=2;
+			showed_toryLOT269();
+			LOT269p = compute_LOT269();
+			LOT269 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT269,
+					stop : l_LOT269
+				})]),
+				position : LOT269p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT269p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT269.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT269_pas_s=1;
+			showed_toryLOT269();
+			LOT269p = compute_LOT269();
+			LOT269 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT269,
+					stop : l_LOT269
+				})]),
+				position : LOT269p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT269p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT269.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT269t2").checked = !document.getElementById("LOT269t2").checked;
+		}
+	}
+	
+	function LOT269t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269))){
+		if(LOT269_pas_l==1){
+			LOT269_pas_l=2;
+			showed_toryLOT269();
+			LOT269p = compute_LOT269();
+			LOT269 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT269,
+					stop : l_LOT269
+				})]),
+				position : LOT269p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT269p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT269.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT269_pas_l=1;
+			showed_toryLOT269();
+			LOT269p = compute_LOT269();
+			LOT269 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT269,
+					stop : l_LOT269
+				})]),
+				position : LOT269p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT269p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT269.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT269t1").checked = !document.getElementById("LOT269t1").checked;
+		}
+	}
+	
+	LOT269.show=false;
+	
+	var LOT269s_flag=false;
+	var LOT269c_flag=false;
+	
+	function LOT269s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT269s_flag==false){
+		LOT269s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269)){
+			LOT269.show=true;
+		}}else{
+			LOT269s_flag=false;
+			LOT269.show=false;
+		}
+	}
+	
+	function LOT269c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT269s_flag==true){
+		if(LOT269c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT269)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT269)){
+						num_c=5;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= LOT269;
+				LOT269c_flag=true;
+		}}else{
+			LOT269c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT269c").checked = false;
+		}}else{
+			LOT269c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT269c").checked = false;
+		}
+	}
+	
+	//PLANE 7
+	function compute_LOT270() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT270;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT270,s_LOT270)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT270_pas_s==1){
+						if(LOT270_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT270_lon[i],s_LOT270_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT270_lon[i-23],l_LOT270_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT270_lon[i],s_LOT270_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT270_lon[i-23],l_LOT270_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT270_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT270_lon[i],s_LOT270_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT270_lon[i-23],l_LOT270_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT270_lon[i],s_LOT270_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT270_lon[i-23],l_LOT270_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT270, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT270p = compute_LOT270();
+	var LOT270 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT270,
+			stop : l_LOT270
+		})]),
+		position : LOT270p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT270p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT270.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT270.path.show=false;
+	
+	function showed_toryLOT270(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT270tp==2){
+				LOT270.path.show=true;
+			}else{
+				LOT270.path.show=false;
+			}
+		
+	}
+	
+	function LOT270t() {
+		if(LOT270tp==1){
+			LOT270tp=2;
+			LOT270.path.show=true;
+		}else{
+			LOT270tp=1;
+			LOT270.path.show=false;
+		}
+	}
+	
+	function LOT270t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270))){
+		if(LOT270_pas_s==1){
+			LOT270_pas_s=2;
+			showed_toryLOT270();
+			LOT270p = compute_LOT270();
+			LOT270 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT270,
+					stop : l_LOT270
+				})]),
+				position : LOT270p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT270p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT270.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT270_pas_s=1;
+			showed_toryLOT270();
+			LOT270p = compute_LOT270();
+			LOT270 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT270,
+					stop : l_LOT270
+				})]),
+				position : LOT270p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT270p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT270.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT270t2").checked = !document.getElementById("LOT270t2").checked;
+		}
+	}
+	
+	function LOT270t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270))){
+		if(LOT270_pas_l==1){
+			LOT270_pas_l=2;
+			showed_toryLOT270();
+			LOT270p = compute_LOT270();
+			LOT270 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT270,
+					stop : l_LOT270
+				})]),
+				position : LOT270p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT270p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT270.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT270_pas_l=1;
+			showed_toryLOT270();
+			LOT270p = compute_LOT270();
+			LOT270 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT270,
+					stop : l_LOT270
+				})]),
+				position : LOT270p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT270p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT270.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT270t1").checked = !document.getElementById("LOT270t1").checked;
+		}
+	}
+	
+	LOT270.show=false;
+	
+	var LOT270s_flag=false;
+	var LOT270c_flag=false;
+	
+	function LOT270s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT270s_flag==false){
+		LOT270s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270)){
+			LOT270.show=true;
+		}}else{
+			LOT270s_flag=false;
+			LOT270.show=false;
+		}
+	}
+	
+	function LOT270c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT270s_flag==true){
+		if(LOT270c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT270)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT270)){
+						num_c=6;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= LOT270;
+				LOT270c_flag=true;
+		}}else{
+			LOT270c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT270c").checked = false;
+		}}else{
+			LOT270c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT270c").checked = false;
+		}
+	}
+	
+	//PLANE 8
+	function compute_KLM1363() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1363;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1363,s_KLM1363)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1363_pas_s==1){
+						if(KLM1363_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1363_lon[i],s_KLM1363_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1363_lon[i-23],l_KLM1363_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1363_lon[i],s_KLM1363_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1363_lon[i-23],l_KLM1363_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1363_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1363_lon[i],s_KLM1363_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1363_lon[i-23],l_KLM1363_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1363_lon[i],s_KLM1363_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1363_lon[i-23],l_KLM1363_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1363, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1363p = compute_KLM1363();
+	var KLM1363 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1363,
+			stop : l_KLM1363
+		})]),
+		position : KLM1363p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1363p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1363.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1363.path.show=false;
+	
+	function showed_toryKLM1363(){
+		var act_time=viewer.clock.currentTime;
+		if(KLM1363tp==2){
+				KLM1363.path.show=true;
+			}else{
+				KLM1363.path.show=false;
+			}
+		
+	}
+	
+	function KLM1363t() {
+		if(KLM1363tp==1){
+			KLM1363tp=2;
+			KLM1363.path.show=true;
+		}else{
+			KLM1363tp=1;
+			KLM1363.path.show=false;
+		}
+	}
+	
+	function KLM1363t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363))){
+		if(KLM1363_pas_s==1){
+			KLM1363_pas_s=2;
+			showed_toryKLM1363();
+			KLM1363p = compute_KLM1363();
+			KLM1363 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1363,
+					stop : l_KLM1363
+				})]),
+				position : KLM1363p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1363p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1363.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1363_pas_s=1;
+			showed_toryKLM1363();
+			KLM1363p = compute_KLM1363();
+			KLM1363 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1363,
+					stop : l_KLM1363
+				})]),
+				position : KLM1363p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1363p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1363.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1363t2").checked = !document.getElementById("KLM1363t2").checked;
+		}
+	}
+	
+	function KLM1363t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363))){
+		if(KLM1363_pas_l==1){
+			KLM1363_pas_l=2;
+			showed_toryKLM1363();
+			KLM1363p = compute_KLM1363();
+			KLM1363 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1363,
+					stop : l_KLM1363
+				})]),
+				position : KLM1363p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1363p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1363.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1363_pas_l=1;
+			showed_toryKLM1363();
+			KLM1363p = compute_KLM1363();
+			KLM1363 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1363,
+					stop : l_KLM1363
+				})]),
+				position : KLM1363p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1363p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1363.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1363t1").checked = !document.getElementById("KLM1363t1").checked;
+		}
+	}
+	
+	KLM1363.show=false;
+	
+	var KLM1363s_flag=false;
+	var KLM1363c_flag=false;
+	
+	function KLM1363s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1363s_flag==false){
+		KLM1363s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363)){
+			KLM1363.show=true;
+		}}else{
+			KLM1363s_flag=false;
+			KLM1363.show=false;
+		}
+	}
+	
+	function KLM1363c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1363s_flag==true){
+		if(KLM1363c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1363)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1363)){
+						num_c=7;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= KLM1363;
+				KLM1363c_flag=true;
+		}}else{
+			KLM1363c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1363c").checked = false;
+		}}else{
+			KLM1363c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1363c").checked = false;
+		}
+	}
+	
+	//PLANE 9
+	function compute_LOT266() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT266;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT266,s_LOT266)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT266_pas_s==1){
+						if(LOT266_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT266_lon[i],s_LOT266_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT266_lon[i-23],l_LOT266_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT266_lon[i],s_LOT266_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT266_lon[i-23],l_LOT266_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT266_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT266_lon[i],s_LOT266_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT266_lon[i-23],l_LOT266_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT266_lon[i],s_LOT266_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT266_lon[i-23],l_LOT266_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT266, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT266p = compute_LOT266();
+	var LOT266 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT266,
+			stop : l_LOT266
+		})]),
+		position : LOT266p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT266p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT266.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT266.path.show=false;
+	
+	function showed_toryLOT266(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT266tp==2){
+				LOT266.path.show=true;
+			}else{
+				LOT266.path.show=false;
+			}
+		
+	}
+	
+	function LOT266t() {
+		if(LOT266tp==1){
+			LOT266tp=2;
+			LOT266.path.show=true;
+		}else{
+			LOT266tp=1;
+			LOT266.path.show=false;
+		}
+	}
+	
+	function LOT266t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266))){
+		if(LOT266_pas_s==1){
+			LOT266_pas_s=2;
+			showed_toryLOT266();
+			LOT266p = compute_LOT266();
+			LOT266 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT266,
+					stop : l_LOT266
+				})]),
+				position : LOT266p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT266p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT266.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT266_pas_s=1;
+			showed_toryLOT266();
+			LOT266p = compute_LOT266();
+			LOT266 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT266,
+					stop : l_LOT266
+				})]),
+				position : LOT266p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT266p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT266.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT266t2").checked = !document.getElementById("LOT266t2").checked;
+		}
+	}
+	
+	function LOT266t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266))){
+		if(LOT266_pas_l==1){
+			LOT266_pas_l=2;
+			showed_toryLOT266();
+			LOT266p = compute_LOT266();
+			LOT266 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT266,
+					stop : l_LOT266
+				})]),
+				position : LOT266p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT266p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT266.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT266_pas_l=1;
+			showed_toryLOT266();
+			LOT266p = compute_LOT266();
+			LOT266 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT266,
+					stop : l_LOT266
+				})]),
+				position : LOT266p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT266p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT266.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT266t1").checked = !document.getElementById("LOT266t1").checked;
+		}
+	}
+	
+	LOT266.show=false;
+	
+	var LOT266s_flag=false;
+	var LOT266c_flag=false;
+	
+	function LOT266s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT266s_flag==false){
+		LOT266s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266)){
+			LOT266.show=true;
+		}}else{
+			LOT266s_flag=false;
+			LOT266.show=false;
+		}
+	}
+	
+	function LOT266c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT266s_flag==true){
+		if(LOT266c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT266)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT266)){
+						num_c=8;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= LOT266;
+				LOT266c_flag=true;
+		}}else{
+			LOT266c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT266c").checked = false;
+		}}else{
+			LOT266c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT266c").checked = false;
+		}
+	}
+	
+	//PLANE 10
+	function compute_KLM1365() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1365;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1365,s_KLM1365)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1365_pas_s==1){
+						if(KLM1365_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1365_lon[i],s_KLM1365_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1365_lon[i-23],l_KLM1365_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1365_lon[i],s_KLM1365_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1365_lon[i-23],l_KLM1365_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1365_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1365_lon[i],s_KLM1365_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1365_lon[i-23],l_KLM1365_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1365_lon[i],s_KLM1365_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1365_lon[i-23],l_KLM1365_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1365, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1365p = compute_KLM1365();
+	var KLM1365 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1365,
+			stop : l_KLM1365
+		})]),
+		position : KLM1365p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1365p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1365.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1365.path.show=false;
+	
+	function showed_toryKLM1365(){
+		var act_time=viewer.clock.currentTime;
+		if(KLM1365tp==2){
+				KLM1365.path.show=true;
+			}else{
+				KLM1365.path.show=false;
+			}
+		
+	}
+	
+	function KLM1365t() {
+		if(KLM1365tp==1){
+			KLM1365tp=2;
+			KLM1365.path.show=true;
+		}else{
+			KLM1365tp=1;
+			KLM1365.path.show=false;
+		}
+	}
+	
+	function KLM1365t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365))){
+		if(KLM1365_pas_s==1){
+			KLM1365_pas_s=2;
+			showed_toryKLM1365();
+			KLM1365p = compute_KLM1365();
+			KLM1365 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1365,
+					stop : l_KLM1365
+				})]),
+				position : KLM1365p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1365p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1365.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1365_pas_s=1;
+			showed_toryKLM1365();
+			KLM1365p = compute_KLM1365();
+			KLM1365 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1365,
+					stop : l_KLM1365
+				})]),
+				position : KLM1365p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1365p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1365.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1365t2").checked = !document.getElementById("KLM1365t2").checked;
+		}
+	}
+	
+	function KLM1365t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365))){
+		if(KLM1365_pas_l==1){
+			KLM1365_pas_l=2;
+			showed_toryKLM1365();
+			KLM1365p = compute_KLM1365();
+			KLM1365 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1365,
+					stop : l_KLM1365
+				})]),
+				position : KLM1365p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1365p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1365.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1365_pas_l=1;
+			showed_toryKLM1365();
+			KLM1365p = compute_KLM1365();
+			KLM1365 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1365,
+					stop : l_KLM1365
+				})]),
+				position : KLM1365p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1365p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1365.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1365t1").checked = !document.getElementById("KLM1365t1").checked;
+		}
+	}
+	
+	KLM1365.show=false;
+	
+	var KLM1365s_flag=false;
+	var KLM1365c_flag=false;
+	
+	function KLM1365s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1365s_flag==false){
+		KLM1365s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365)){
+			KLM1365.show=true;
+		}}else{
+			KLM1365s_flag=false;
+			KLM1365.show=false;
+		}
+	}
+	
+	function KLM1365c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1365s_flag==true){
+		if(KLM1365c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1365)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1365)){
+						num_c=9;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= KLM1365;
+				KLM1365c_flag=true;
+		}}else{
+			KLM1365c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1365c").checked = false;
+		}}else{
+			KLM1365c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1365c").checked = false;
+		}
+	}
+	
+	//PLANE 11
+	function compute_LOT268() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_LOT268;
+		var support = Cesium.JulianDate.secondsDifference(l_LOT268,s_LOT268)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(LOT268_pas_s==1){
+						if(LOT268_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT268_lon[i],s_LOT268_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT268_lon[i-23],l_LOT268_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT268_lon[i],s_LOT268_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT268_lon[i-23],l_LOT268_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(LOT268_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT268_lon[i],s_LOT268_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT268_lon[i-23],l_LOT268_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_LOT268_lon[i],s_LOT268_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_LOT268_lon[i-23],l_LOT268_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_LOT268, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var LOT268p = compute_LOT268();
+	var LOT268 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_LOT268,
+			stop : l_LOT268
+		})]),
+		position : LOT268p,
+		orientation : new Cesium.VelocityOrientationProperty(LOT268p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	LOT268.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	LOT268.path.show=false;
+	
+	function showed_toryLOT268(){
+		var act_time=viewer.clock.currentTime;
+		if(LOT268tp==2){
+				LOT268.path.show=true;
+			}else{
+				LOT268.path.show=false;
+			}
+	
+	}
+	
+	function LOT268t() {
+		if(LOT268tp==1){
+			LOT268tp=2;
+			LOT268.path.show=true;
+		}else{
+			LOT268tp=1;
+			LOT268.path.show=false;
+		}
+	}
+	
+	function LOT268t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268))){
+		if(LOT268_pas_s==1){
+			LOT268_pas_s=2;
+			showed_toryLOT268();
+			LOT268p = compute_LOT268();
+			LOT268 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT268,
+					stop : l_LOT268
+				})]),
+				position : LOT268p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT268p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT268.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT268_pas_s=1;
+			showed_toryLOT268();
+			LOT268p = compute_LOT268();
+			LOT268 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT268,
+					stop : l_LOT268
+				})]),
+				position : LOT268p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT268p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT268.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT268t2").checked = !document.getElementById("LOT268t2").checked;
+		}
+	}
+	
+	function LOT268t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268))){
+		if(LOT268_pas_l==1){
+			LOT268_pas_l=2;
+			showed_toryLOT268();
+			LOT268p = compute_LOT268();
+			LOT268 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT268,
+					stop : l_LOT268
+				})]),
+				position : LOT268p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT268p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT268.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			LOT268_pas_l=1;
+			showed_toryLOT268();
+			LOT268p = compute_LOT268();
+			LOT268 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_LOT268,
+					stop : l_LOT268
+				})]),
+				position : LOT268p,
+				orientation : new Cesium.VelocityOrientationProperty(LOT268p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			LOT268.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("LOT268t1").checked = !document.getElementById("LOT268t1").checked;
+		}
+	}
+	
+	LOT268.show=false;
+	
+	var LOT268s_flag=false;
+	var LOT268c_flag=false;
+	
+	function LOT268s() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT268s_flag==false){
+		LOT268s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268)){
+			LOT268.show=true;
+		}}else{
+			LOT268s_flag=false;
+			LOT268.show=false;
+		}
+	}
+	
+	function LOT268c() {
+		var act_time=viewer.clock.currentTime;
+		if(LOT268s_flag==true){
+		if(LOT268c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_LOT268)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_LOT268)){
+						num_c=10;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;						
+						
+						KLM1369c_flag=false;
+						document.getElementById("KLM1369c").checked = false;
+				viewer.trackedEntity= LOT268;
+				LOT268c_flag=true;
+		}}else{
+			LOT268c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT268c").checked = false;
+		}}else{
+			LOT268c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("LOT268c").checked = false;
+		}
+	}
+	
+	//PLANE 12
+	function compute_KLM1369() {
+		var property = new Cesium.SampledPositionProperty();
+		var time = s_KLM1369;
+		var support = Cesium.JulianDate.secondsDifference(l_KLM1369,s_KLM1369)-1440;
+				for (var i = 0; i <26 ; i ++) {
+					if(KLM1369_pas_s==1){
+						if(KLM1369_pas_l==1){//11
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1369_lon[i],s_KLM1369_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1369_lon[i-23],l_KLM1369_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//12
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1369_lon[i],s_KLM1369_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_1_ams_lon[i-3],s_1_ams_lat[i-3],s_1_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1369_lon[i-23],l_KLM1369_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}else{
+						if(KLM1369_pas_l==1){//21
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1369_lon[i],s_KLM1369_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_1_ch_lon[i-13],l_1_ch_lat[i-13],l_1_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1369_lon[i-23],l_KLM1369_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+						}else{//22
+							if(i<3){
+							var position = Cesium.Cartesian3.fromDegrees(s_KLM1369_lon[i],s_KLM1369_lat[i],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=3&&i<13){
+							var position = Cesium.Cartesian3.fromDegrees(s_2_ams_lon[i-3],s_2_ams_lat[i-3],s_2_ams_h[i-3]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, i*60, new Cesium.JulianDate());
+							}
+							if(i>=13&&i<23){
+							var position = Cesium.Cartesian3.fromDegrees(l_2_ch_lon[i-13],l_2_ch_lat[i-13],l_2_ch_h[i-13]);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+							if(i>=23){
+							var position = Cesium.Cartesian3.fromDegrees(l_KLM1369_lon[i-23],l_KLM1369_lat[i-23],0);
+							time=Cesium.JulianDate.addSeconds(s_KLM1369, support+(i*60), new Cesium.JulianDate());
+							}
+						}
+					}				
+				property.addSample(time, position);					
+				}
+		return property;
+	}
+	
+	var KLM1369p = compute_KLM1369();
+	var KLM1369 = viewer.entities.add({
+		availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+			start : s_KLM1369,
+			stop : l_KLM1369
+		})]),
+		position : KLM1369p,
+		orientation : new Cesium.VelocityOrientationProperty(KLM1369p),
+		model : {
+			uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+			scale : 2
+		},
+		path : {
+			resolution : 1,
+			material : new Cesium.PolylineGlowMaterialProperty({
+				glowPower : 0.1,
+				color : Cesium.Color.YELLOW
+			}),
+			width : 10
+		}
+	});
+	KLM1369.position.setInterpolationOptions({
+            interpolationDegree :  2,
+            interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+    });
+	
+	KLM1369.path.show=false;
+	
+	function showed_toryKLM1369(){
+		var act_time=viewer.clock.currentTime;
+			if(KLM1369tp==2){
+				KLM1369.path.show=true;
+			}else{
+				KLM1369.path.show=false;
+			}
+	}
+	
+	function KLM1369t() {
+		if(KLM1369tp==1){
+			KLM1369tp=2;
+			KLM1369.path.show=true;
+		}else{
+			KLM1369tp=1;
+			KLM1369.path.show=false;
+		}
+	}
+	
+	function KLM1369t2() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369))){
+		if(KLM1369_pas_s==1){
+			KLM1369_pas_s=2;
+			showed_toryKLM1369();
+			KLM1369p = compute_KLM1369();
+			KLM1369 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1369,
+					stop : l_KLM1369
+				})]),
+				position : KLM1369p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1369p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1369.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1369_pas_s=1;
+			showed_toryKLM1369();
+			KLM1369p = compute_KLM1369();
+			KLM1369 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1369,
+					stop : l_KLM1369
+				})]),
+				position : KLM1369p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1369p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1369.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1369t2").checked = !document.getElementById("KLM1369t2").checked;
+		}
+	}
+	
+	function KLM1369t1() {
+		var act_time=viewer.clock.currentTime;
+		if(!(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369))){
+		if(KLM1369_pas_l==1){
+			KLM1369_pas_l=2;
+			showed_toryKLM1369();
+			KLM1369p = compute_KLM1369();
+			KLM1369 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1369,
+					stop : l_KLM1369
+				})]),
+				position : KLM1369p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1369p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1369.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}else{
+			KLM1369_pas_l=1;
+			showed_toryKLM1369();
+			KLM1369p = compute_KLM1369();
+			KLM1369 = viewer.entities.add({
+				availability : new Cesium.TimeIntervalCollection([new Cesium.TimeInterval({
+					start : s_KLM1369,
+					stop : l_KLM1369
+				})]),
+				position : KLM1369p,
+				orientation : new Cesium.VelocityOrientationProperty(KLM1369p),
+				model : {
+					uri : 'http://localhost:8080/Apps/SampleData/models/CesiumAir/Cesium_Air.gltf',
+					scale : 2
+				},
+				path : {
+					resolution : 1,
+					material : new Cesium.PolylineGlowMaterialProperty({
+						glowPower : 0.1,
+						color : Cesium.Color.YELLOW
+					}),
+					width : 10
+				}
+			});
+			KLM1369.position.setInterpolationOptions({
+					interpolationDegree :  2,
+					interpolationAlgorithm : Cesium.HermitePolynomialApproximation
+			});
+		}}else{
+			document.getElementById("KLM1369t1").checked = !document.getElementById("KLM1369t1").checked;
+		}
+	}
+	
+	KLM1369.show=false;
+	
+	var KLM1369s_flag=false;
+	var KLM1369c_flag=false;
+	
+	function KLM1369s() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1369s_flag==false){
+		KLM1369s_flag=true;
+		if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369)){
+			KLM1369.show=true;
+		}}else{
+			KLM1369s_flag=false;
+			KLM1369.show=false;
+		}
+	}
+	
+	function KLM1369c() {
+		var act_time=viewer.clock.currentTime;
+		if(KLM1369s_flag==true){
+		if(KLM1369c_flag==false){
+			if(Cesium.JulianDate.greaterThanOrEquals(act_time, s_KLM1369)&&Cesium.JulianDate.lessThanOrEquals(act_time, l_KLM1369)){
+						num_c=11;
+						KLM1362c_flag=false;
+						document.getElementById("KLM1362c").checked = false;
+						
+						LOT265c_flag=false;
+						document.getElementById("LOT265c").checked = false;
+						
+						KLM1364c_flag=false;
+						document.getElementById("KLM1364c").checked = false;
+						
+						KLM1366c_flag=false;
+						document.getElementById("KLM1366c").checked = false;
+						
+						LOT267c_flag=false;
+						document.getElementById("LOT267c").checked = false;
+						
+						LOT269c_flag=false;
+						document.getElementById("LOT269c").checked = false;
+						
+						LOT270c_flag=false;
+						document.getElementById("LOT270c").checked = false;
+						
+						KLM1363c_flag=false;
+						document.getElementById("KLM1363c").checked = false;
+						
+						LOT266c_flag=false;
+						document.getElementById("LOT266c").checked = false;
+						
+						KLM1365c_flag=false;
+						document.getElementById("KLM1365c").checked = false;
+						
+						LOT268c_flag=false;
+						document.getElementById("LOT268c").checked = false;
+				viewer.trackedEntity= KLM1369;
+				KLM1369c_flag=true;
+		}}else{
+			KLM1369c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1369c").checked = false;
+		}}else{
+			KLM1369c_flag=false;
+			viewer.trackedEntity = undefined;
+			document.getElementById("KLM1369c").checked = false;
+		}
+	}
+	
+  </script>
+</body>
+</html>

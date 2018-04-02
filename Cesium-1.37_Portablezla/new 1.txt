@@ -1,0 +1,48 @@
+	
+	var lon2 = [20.898712, 20.945471, 20.985951, 21.006883, 21.004443, 20.983671, 20.972785, 20.959141, 20.956245, 20.961863];
+	var lat2 = [52.154416, 52.128411, 52.135236, 52.149126, 52.155199, 52.161201, 52.164276, 52.167962, 52.169763, 52.176163];
+	var h2 = [5000,4000,2500,1500,500,100,0,0,0,0];
+	
+		function computeFlight() {
+		var property = new Cesium.SampledPositionProperty();
+		var n=0;
+		for (var i = 0; i <240 ; i += 60) {
+			var radians = Cesium.Math.toRadians(i);
+			var time = Cesium.JulianDate.addSeconds(start, i, new Cesium.JulianDate());
+			var position = Cesium.Cartesian3.fromDegrees(lon[n],lat[n],0);
+			n=n+1;
+			viewer.entities.add({
+            position : position,
+            point : {
+                pixelSize : 8,
+                color : Cesium.Color.TRANSPARENT,
+                outlineColor : Cesium.Color.YELLOW,
+                outlineWidth : 3
+            }
+        });
+			property.addSample(time, position);
+		}
+		return property;
+	}
+	
+	function computeFlight2() {
+		var property = new Cesium.SampledPositionProperty();
+		var n=0;
+		for (var i = 0; i <600 ; i += 60) {
+			var radians = Cesium.Math.toRadians(i);
+			var time = Cesium.JulianDate.addSeconds(start, i, new Cesium.JulianDate());
+			var position = Cesium.Cartesian3.fromDegrees(lon2[n],lat2[n],h2[n]);
+			n=n+1;
+			viewer.entities.add({
+            position : position,
+            point : {
+                pixelSize : 8,
+                color : Cesium.Color.TRANSPARENT,
+                outlineColor : Cesium.Color.YELLOW,
+                outlineWidth : 3
+            }
+        });
+			property.addSample(time, position);
+		}
+		return property;
+	}

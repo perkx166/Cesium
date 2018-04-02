@@ -1,0 +1,16 @@
+::1 - - [22/Jan/2018:14:22:34 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166796
+::1 - - [22/Jan/2018:14:22:34 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166796
+::1 - - [22/Jan/2018:14:23:59 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 304 -
+::1 - - [22/Jan/2018:14:24:00 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:29:01 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 304 -
+::1 - - [22/Jan/2018:14:29:02 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:30:49 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166855
+::1 - - [22/Jan/2018:14:30:51 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:32:35 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 167451
+::1 - - [22/Jan/2018:14:32:37 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:33:58 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166914
+::1 - - [22/Jan/2018:14:34:00 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:35:24 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166911
+::1 - - [22/Jan/2018:14:35:26 +0100] "GET /favicon.ico HTTP/1.1" 200 49334
+::1 - - [22/Jan/2018:14:45:12 +0100] "GET /Apps/HelloWorld.html HTTP/1.1" 200 166855
+::1 - - [22/Jan/2018:14:45:13 +0100] "GET /favicon.ico HTTP/1.1" 200 49334

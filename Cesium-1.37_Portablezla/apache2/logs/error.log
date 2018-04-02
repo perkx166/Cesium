@@ -1,0 +1,5 @@
+[Mon Jan 22 14:22:23.365289 2018] [mpm_winnt:notice] [pid 17064:tid 760] AH00455: Apache/2.4.6 (Win32) PHP/5.4.17 configured -- resuming normal operations
+[Mon Jan 22 14:22:23.365289 2018] [mpm_winnt:notice] [pid 17064:tid 760] AH00456: Apache Lounge VC10 Server built: Jul 16 2013 11:15:41
+[Mon Jan 22 14:22:23.365289 2018] [core:notice] [pid 17064:tid 760] AH00094: Command line: 'C:\\Users\\perkx166\\Desktop\\Cesium-1.37_Portablezla/apache2/bin/httpd_usbwv8.exe -d C:/Users/perkx166/Desktop/Cesium-1.37_Portablezla/apache2'
+[Mon Jan 22 14:22:23.375296 2018] [mpm_winnt:notice] [pid 17064:tid 760] AH00418: Parent: Created child process 18308
+[Mon Jan 22 14:22:24.420038 2018] [mpm_winnt:notice] [pid 18308:tid 816] AH00354: Child: Starting 64 worker threads.
